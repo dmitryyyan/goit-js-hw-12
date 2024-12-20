@@ -1,24 +1,24 @@
-import{S as w,i as u,a as L}from"./assets/vendor-DEenWwFD.js";(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const c of s.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&i(c)}).observe(document,{childList:!0,subtree:!0});function e(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(t){if(t.ep)return;t.ep=!0;const s=e(t);fetch(t.href,s)}})();const v=document.querySelector(".search-form"),f=document.querySelector(".pictures-list"),p=document.querySelector(".loader"),r=document.querySelector(".button-load"),l=new w(".gallery-card a.gallary-card-link",{captionsData:"alt",captionDelay:250});let d=null,y=0;v.addEventListener("submit",o=>{o.preventDefault(),d=o.target.elements.input.value,n=1,d.trim("")!==""&&(p.style.display="flex",l&&(l.close(),f.innerHTML=""),setTimeout(()=>{g().then(e=>{y=e.totalHits,b(e.hits),l.refresh(),e.hits.length===0?(u.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight",backgroundColor:"red",messageColor:"white"}),r.disabled=!0,r.style.display="none",r.style.opacity=0,r.style.overflow="hidden"):(r.disabled=!1,r.style.display="flex",r.style.opacity=1,r.style.overflow="visible")}).catch(e=>{console.error("Помилка отримання зображень:",e)}).finally(()=>{p.style.display="none"})},500),h(),o.target.reset())});let n=1,m=15;r.addEventListener("click",async()=>{n+=1;const o=await g();b(o.hits),l.refresh(),h(),document.querySelectorAll(".gallery-card").forEach(e=>{const i=e.getBoundingClientRect();window.scrollBy({top:i.height*1.36,behavior:"smooth"})})});async function g(){const o="42193842-675e74ed987999787d4b57f5e",a=new URLSearchParams({key:o,per_page:m,page:n,q:d,image_type:"photo",orientation:"horizontal",safesearch:!0});return(await L.get(`https://pixabay.com/api/?${a}`)).data}function h(){const o=Math.ceil(y/m);n===o&&(u.warning({message:"We're sorry, but you've reached the end of search results.",position:"topRight",backgroundColor:"#add8e6",messageColor:"white"}),r.disabled=!0,r.style.display="none",r.style.opacity=0,r.style.overflow="hidden")}function b(o){const a=o.map(e=>`<li class="gallery-card">
-    <a class="gallary-card-link" href="${e.largeImageURL}">
-        <img src="${e.webformatURL}" alt="${e.tags}" />
+import{S as L,i,a as C}from"./assets/vendor-DEenWwFD.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))n(r);new MutationObserver(r=>{for(const a of r)if(a.type==="childList")for(const g of a.addedNodes)g.tagName==="LINK"&&g.rel==="modulepreload"&&n(g)}).observe(document,{childList:!0,subtree:!0});function t(r){const a={};return r.integrity&&(a.integrity=r.integrity),r.referrerPolicy&&(a.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?a.credentials="include":r.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function n(r){if(r.ep)return;r.ep=!0;const a=t(r);fetch(r.href,a)}})();const P=document.querySelector(".search-form"),p=document.querySelector(".pictures-list"),v=document.querySelector(".loader"),s=document.querySelector(".button-load"),c=new L(".gallery-card a.gallary-card-link",{captionsData:"alt",captionDelay:250});let f=null,m=0,u=1;const h=15;function d(e,o=!1){o&&(s.style.display=e?"none":"flex"),v.style.display=e?"flex":"none"}function l(e){s.disabled=!e,s.style.display=e?"flex":"none",s.style.opacity=e?1:0,s.style.overflow=e?"visible":"hidden"}P.addEventListener("submit",async e=>{if(e.preventDefault(),f=e.target.elements.input.value.trim(),u=1,f===""){i.warning({message:"Please enter a search term.",position:"topRight",backgroundColor:"#add8e6",messageColor:"white"});return}d(!0),c&&(c.close(),p.innerHTML="");try{const t=await w();m=t.totalHits,b(t.hits),c.refresh(),t.hits.length===0?(i.error({message:"Sorry, no images match your search query. Please try again!",position:"topRight",backgroundColor:"red",messageColor:"white"}),l(!1)):y()}catch{i.error({message:"An error occurred while fetching images. Please try again later.",position:"topRight",backgroundColor:"red",messageColor:"white"}),l(!1)}finally{d(!1)}e.target.reset()});s.addEventListener("click",async()=>{u+=1,d(!0,!0);try{const e=await w();b(e.hits),c.refresh(),y(),document.querySelectorAll(".gallery-card").forEach(t=>{const n=t.getBoundingClientRect();window.scrollBy({top:n.height*1.36,behavior:"smooth"})})}catch{i.error({message:"An error occurred while fetching more images. Please try again later.",position:"topRight",backgroundColor:"red",messageColor:"white"}),l(!1)}finally{d(!1,!0)}});function y(){const e=Math.ceil(m/h);u>=e?(i.warning({message:"We're sorry, but you've reached the end of search results.",position:"topRight",backgroundColor:"#add8e6",messageColor:"white"}),l(!1)):l(!0)}async function w(){const e="42193842-675e74ed987999787d4b57f5e",o=new URLSearchParams({key:e,per_page:h,page:u,q:f,image_type:"photo",orientation:"horizontal",safesearch:!0});try{return(await C.get(`https://pixabay.com/api/?${o}`)).data}catch{throw new Error("Error fetching data from API")}}function b(e){const o=e.map(t=>`<li class="gallery-card">
+    <a class="gallary-card-link" href="${t.largeImageURL}">
+        <img src="${t.webformatURL}" alt="${t.tags}" />
     <ul class="image-info">
             <li class="image-item-info">
             <p>Likes</p>
-            <p>${e.likes}</p>
+            <p>${t.likes}</p>
         </li>
         <li class="image-item-info">
             <p>Views</p>
-            <p>${e.views}</p>
+            <p>${t.views}</p>
         </li>
         <li class="image-item-info">
             <p>Comments</p>
-            <p>${e.comments}</p>
+            <p>${t.comments}</p>
         </li>
         <li class="image-item-info">
             <p>Downloads</p>
-            <p>${e.downloads}</p>
+            <p>${t.downloads}</p>
         </li>
     </ul>
     </a>
-</li>`).join("");f.insertAdjacentHTML("beforeend",a)}
+</li>`).join("");p.insertAdjacentHTML("beforeend",o)}
 //# sourceMappingURL=index.js.map
