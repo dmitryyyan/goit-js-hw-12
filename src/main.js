@@ -88,10 +88,10 @@ form.addEventListener('submit', async e => {
   e.target.reset();
 });
 
-// Кнопка Load More
+
 loadBtn.addEventListener('click', async () => {
   page += 1;
-  toggleLoader(true, true);
+  toggleLoader(true, true); 
 
   try {
     const data = await getImg();
@@ -116,7 +116,7 @@ loadBtn.addEventListener('click', async () => {
     });
     toggleLoadBtn(false);
   } finally {
-    toggleLoader(false, true);
+    toggleLoader(false, true); 
   }
 });
 
@@ -187,3 +187,5 @@ function render(imgs) {
 
   list.insertAdjacentHTML('beforeend', markup);
 }
+
+toggleLoadBtn(false);
