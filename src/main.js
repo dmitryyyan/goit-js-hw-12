@@ -124,7 +124,7 @@ function checkLastPage() {
   const maxPage = Math.ceil(totalResult / perPage);
   if (page >= maxPage) {
     iziToast.warning({
-      message: "We're sorry, but you've reached the end of search results.",
+      message: "We're sorrry, but you've reached the end of search results.",
       position: 'topRight',
       backgroundColor: '#add8e6',
       messageColor: 'white',
